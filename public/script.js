@@ -5,29 +5,41 @@ let colInd = 0;
 let matchCount = 0;
 let keyBtns = document.querySelectorAll('button')
 keyBtns.forEach(button=>button.addEventListener('click', pressButton));
+
+const allWords = {
+    1: "BIRDS", 2: "CANDY", 3: "PLANE", 4: "FLASH", 5: "HOTEL", 6: "TODAY", 7: "ITCHY"
+}
+let progIdx = 1;
+
 getWord();
 
 
 async function getWord() {   
+    // ONLINE:
     // let getWord = await fetch('http://localhost:5000/getWord')
-    let getWord = await fetch('/getWord')
-    .then(response => response.json())
-    .then(data => {
-        // getting from the server the word and the wordID 
-        setCurrWord(data.userWord, data.wordId)
-        // saving data in case of refresh page
-        sessionStorage.setItem('Userdata', JSON.stringify(data));
-        })
-    .catch(err => {
-        console.error('couldnt get word from server:'+err)
-        let savedData = JSON.parse(sessionStorage.getItem('Userdata'));
-        console.log(savedData)
-        // setCurrWord(savedData.userWord, savedData.wordId)       //default word in case couldnt get from server
-        setCurrWord('BIRDS', 1)       //default word 'BIRDS'
-    })
+    // let getWord = await fetch('/getWord')
+    // .then(response => response.json())
+    // .then(data => {
+    //     // getting from the server the word and the wordID 
+    //     setCurrWord(data.userWord, data.wordId)
+    //     // saving data in case of refresh page
+    //     sessionStorage.setItem('Userdata', JSON.stringify(data));
+    //     })
+    // .catch(err => {
+    //     console.error('couldnt get word from server:'+err)
+    //     let savedData = JSON.parse(sessionStorage.getItem('Userdata'));
+    //     console.log(savedData)
+    //     // setCurrWord(savedData.userWord, savedData.wordId)       //default word in case couldnt get from server
+    //     setCurrWord('BIRDS', 1)       //default word 'BIRDS'
+    // })
+
+    // OFFLINE:
+    setCurrWord(allWords[`${progIdx}`],progIdx)
+
 };
 
 function setCurrWord(word, wordID='Disconnected') {
+    console.log('Word', word);
     currWord = word.split('')
     document.getElementById('wordnum').innerHTML = `#${wordID}`
     console.log('Set Current Word to:',currWord);
@@ -109,7 +121,7 @@ async function updateGame() {
         getWord()
         .then(resetBoard())
         .catch(err=>console.log(err))
-    }, 3000))
+    }, 1200))
     
     
 }
@@ -130,8 +142,9 @@ function resetBoard() {
 //fetching the server to update the user progress status in the DB
 async function progessUser() {
     // let updateWord = await fetch('http://localhost:5000/updateuser')
-    let updateWord = await fetch('/updateuser')
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(err => console.error('couldnt update the server:'+err))
+    // let updateWord = await fetch('/updateuser')
+    // .then(response => response.json())
+    // .then(data => console.log(data))
+    // .catch(err => console.error('couldnt update the server:'+err))
+    progIdx++;
 }
