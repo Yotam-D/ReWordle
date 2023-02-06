@@ -2,7 +2,7 @@
   "name": "rewordle-main",
   "version": "1.0.0",
   "description": "Recreation of the Wordle guessing word game using FrontEnd (JS, HTML, CSS) BackEnd (node.js, postgreSQL)",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "node": "16.4.0",
     "npm": "8.3.1"
