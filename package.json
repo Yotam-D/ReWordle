@@ -1,0 +1,30 @@
+{
+  "name": "rewordle-main",
+  "version": "1.0.0",
+  "description": "Recreation of the Wordle guessing word game using FrontEnd (JS, HTML, CSS) BackEnd (node.js, postgreSQL)",
+  "main": "index.js",
+  "engines": {
+    "node": "16.4.0",
+    "npm": "8.3.1"
+    },
+  "proxy": "http://localhost:5000/",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.7",
+    "express": "^4.17.3",
+    "knex": "^1.0.4",
+    "pg": "^8.7.3"
+  }
+}
